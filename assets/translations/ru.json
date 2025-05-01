@@ -106,5 +106,8 @@
     "custom_color_title": "Пользовательский цвет",
     "days": "День",
     "delete_title": "Удалить",
-    "details_title": "Подробно"
+    "details_title": "Подробно",
+    "custom_http_headers_title": "Пользовательские заголовки HTTP",
+    "daily_play_count_by_media_type_title": "Ежедневное количество воспроизведений по типу носителя",
+    "daily_concurrent_stream_count_by_stream_type_title": "Ежедневное количество одновременных потоков по типу потока"
 }
