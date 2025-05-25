@@ -115,7 +115,7 @@ class LineChartGraph extends StatelessWidget {
           checkToShowVerticalLine: (value) => value % chartData.verticalLineStep == 0,
           drawVerticalLine: true,
           getDrawingVerticalLine: (value) => FlLine(
-            color: Theme.of(context).colorScheme.outline.withOpacity(0.1),
+            color: Theme.of(context).colorScheme.outline.withValues(alpha: 0.1),
           ),
           getDrawingHorizontalLine: (value) => FlLine(
             strokeWidth: 1,
@@ -126,8 +126,8 @@ class LineChartGraph extends StatelessWidget {
           touchTooltipData: LineTouchTooltipData(
             fitInsideHorizontally: true,
             fitInsideVertically: true,
-            tooltipRoundedRadius: 12,
-            getTooltipColor: (touchedSpot) => ThemeHelper.darkenedColor(Theme.of(context).colorScheme.surface).withOpacity(0.98),
+            tooltipBorderRadius: BorderRadius.circular(12),
+            getTooltipColor: (touchedSpot) => ThemeHelper.darkenedColor(Theme.of(context).colorScheme.surface).withValues(alpha: 0.98),
             getTooltipItems: (touchedSpots) {
               touchedSpots.sort(
                 (a, b) => a.barIndex.compareTo(b.barIndex),

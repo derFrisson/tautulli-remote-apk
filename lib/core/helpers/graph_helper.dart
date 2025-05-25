@@ -398,7 +398,7 @@ class GraphHelper {
               ? PlexColorPalette.primaryGold
               : [GraphSeriesType.music, GraphSeriesType.transcode].contains(seriesType)
                   ? Colors.red
-                  : [GraphSeriesType.concurrent].contains(seriesType)
+                  : [GraphSeriesType.concurrent, GraphSeriesType.total].contains(seriesType)
                       ? PlexColorPalette.seaGreen
                       : [GraphSeriesType.live, GraphSeriesType.concurrent].contains(seriesType)
                           ? PlexColorPalette.blue

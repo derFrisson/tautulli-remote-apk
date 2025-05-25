@@ -60,6 +60,8 @@ class StringHelper {
         return LocaleKeys.transcode_title.tr();
       case (GraphSeriesType.concurrent):
         return LocaleKeys.max_concurrent_title.tr();
+      case (GraphSeriesType.total):
+        return LocaleKeys.total_title.tr();
       default:
         return 'Unknown';
     }

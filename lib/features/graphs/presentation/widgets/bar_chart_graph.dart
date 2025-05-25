@@ -162,7 +162,7 @@ class BarChartGraph extends StatelessWidget {
           checkToShowVerticalLine: (value) => value % chartData.verticalLineStep == 0,
           drawVerticalLine: true,
           getDrawingVerticalLine: (value) => FlLine(
-            color: Colors.white.withOpacity(0.03),
+            color: Colors.white.withValues(alpha: 0.03),
           ),
           getDrawingHorizontalLine: (value) => FlLine(
             strokeWidth: 1,
@@ -173,8 +173,8 @@ class BarChartGraph extends StatelessWidget {
           touchTooltipData: BarTouchTooltipData(
             fitInsideHorizontally: true,
             fitInsideVertically: true,
-            tooltipRoundedRadius: 12,
-            getTooltipColor: (group) => ThemeHelper.darkenedColor(Theme.of(context).colorScheme.surface).withOpacity(0.98),
+            tooltipBorderRadius: BorderRadius.circular(12),
+            getTooltipColor: (group) => ThemeHelper.darkenedColor(Theme.of(context).colorScheme.surface).withValues(alpha: 0.98),
             getTooltipItem: (group, groupIndex, rod, rodIndex) {
               List<GraphSeriesDataModel> validItems = List.from(
                 graphData.seriesDataList.where(

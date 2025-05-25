@@ -134,6 +134,8 @@ class Cast {
         return GraphSeriesType.transcode;
       case ('max. concurrent streams'):
         return GraphSeriesType.concurrent;
+      case ('total'):
+        return GraphSeriesType.total;
       default:
         di.sl<Logging>().warning(
               'Utilities :: Failed to cast $value to GraphSeriesType',

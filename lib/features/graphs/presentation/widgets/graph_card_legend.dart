@@ -165,6 +165,23 @@ class GraphCardLegend extends StatelessWidget {
                 ],
               ),
             ),
+          if (seriesTypes.contains(GraphSeriesType.total))
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const FaIcon(
+                    FontAwesomeIcons.solidCircle,
+                    size: 12,
+                    // color: di.sl<Settings>().getTheme() == ThemeType.tautulli ? PlexColorPalette.seaGreen : Theme.of(context).colorScheme.secondary,
+                    color: PlexColorPalette.seaGreen,
+                  ),
+                  const Gap(4),
+                  const Text(LocaleKeys.total_title).tr(),
+                ],
+              ),
+            ),
         ],
       ),
     );
