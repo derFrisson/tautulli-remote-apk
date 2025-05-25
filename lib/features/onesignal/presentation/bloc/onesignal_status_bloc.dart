@@ -24,20 +24,14 @@ class OneSignalStatusBloc extends Bloc<OneSignalStatusEvent, OneSignalStatusStat
     );
 
     try {
-      final deviceState = await oneSignal.state();
-
-      if (deviceState != null) {
-        emit(
-          OneSignalStatusSuccess(
-            hasNotificationPermission: await oneSignal.hasNotificationPermission,
-            isPushDisabled: await oneSignal.isPushDisabled,
-            isSubscribed: await oneSignal.isSubscribed,
-            userId: await oneSignal.userId,
-          ),
-        );
-      } else {
-        throw Exception();
-      }
+      emit(
+        OneSignalStatusSuccess(
+          hasNotificationPermission: await oneSignal.hasNotificationPermission,
+          isOptedIn: await oneSignal.isOptedIn,
+          isSubscribed: await oneSignal.isSubscribed,
+          userId: await oneSignal.userId,
+        ),
+      );
     } catch (e) {
       emit(
         OneSignalStatusFailure(),

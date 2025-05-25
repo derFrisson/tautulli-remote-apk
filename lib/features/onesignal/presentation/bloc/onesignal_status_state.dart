@@ -13,19 +13,19 @@ class OneSignalStatusInProgress extends OneSignalStatusState {}
 
 class OneSignalStatusSuccess extends OneSignalStatusState {
   final bool hasNotificationPermission;
-  final bool isPushDisabled;
+  final bool isOptedIn;
   final bool isSubscribed;
   final String userId;
 
   const OneSignalStatusSuccess({
     required this.hasNotificationPermission,
-    required this.isPushDisabled,
+    required this.isOptedIn,
     required this.isSubscribed,
     required this.userId,
   });
 
   @override
-  List<Object> get props => [hasNotificationPermission, isPushDisabled, isSubscribed, userId];
+  List<Object> get props => [hasNotificationPermission, isOptedIn, isSubscribed, userId];
 }
 
 class OneSignalStatusFailure extends OneSignalStatusState {}

@@ -78,25 +78,30 @@ class TautulliRemoteState extends State<TautulliRemote> {
     if (!mounted) return;
 
     // Enabling console logs for users to troubleshoot OneSignal issues
-    await OneSignal.shared.setLogLevel(OSLogLevel.error, OSLogLevel.none);
+    await OneSignal.Debug.setLogLevel(OSLogLevel.error);
 
-    await OneSignal.shared.setLocationShared(false);
+    OneSignal.consentRequired(true);
 
-    await OneSignal.shared.setRequiresUserPrivacyConsent(true);
+    OneSignal.initialize("3b4b666a-d557-4b92-acdf-e2c8c4b95357");
 
-    await OneSignal.shared.setAppId("3b4b666a-d557-4b92-acdf-e2c8c4b95357");
+    await OneSignal.Location.setShared(false);
 
-    OneSignal.shared.setNotificationWillShowInForegroundHandler((event) {
-      // Will be called whenever a notification is received
-      event.complete(event.notification);
+    OneSignal.Notifications.addForegroundWillDisplayListener((event) {
+      /// preventDefault to not display the notification
+      // event.preventDefault();
+
+      /// Do async work
+
+      /// notification.display() to display after preventing default
+      event.notification.display();
     });
 
-    OneSignal.shared.setNotificationOpenedHandler((OSNotificationOpenedResult result) async {
+    OneSignal.Notifications.addClickListener((event) async {
       // Will be called whenever a notification is opened/button pressed
 
       // Find the action type in the notification and open a page accordingly
       final data = await NotificationHelper.extractAdditionalData(
-        result.notification.additionalData,
+        event.notification.additionalData,
       );
 
       if (data != null) {
@@ -130,47 +135,50 @@ class TautulliRemoteState extends State<TautulliRemote> {
       }
     });
 
-    OneSignal.shared.setSubscriptionObserver((OSSubscriptionStateChanges changes) async {
+    OneSignal.User.pushSubscription.addObserver((state) async {
       // Will be called whenever the subscription changes
 
+      OSPushSubscriptionState current = state.current;
+      OSPushSubscriptionState previous = state.previous;
+
       // Only trigger new checks when userId or pushToken move from null to a value
-      if (changes.to.userId != null || changes.to.pushToken != null) {
+      if (current.id != previous.id || current.token != previous.token) {
         context.read<OneSignalSubBloc>().add(OneSignalSubCheck());
         context.read<OneSignalHealthBloc>().add(OneSignalHealthCheck());
 
-        if (changes.to.userId != null) {
+        if (current.id != previous.id) {
           await oneSignalServerRegistrationChange();
         }
       }
     });
 
     // Check if registration update is needed after OneSignal is initalized to avoid sending a blank User ID
-    await veryifyOneSignalConsent();
+    // await veryifyOneSignalConsent();
     checkIfRegistrationUpdateNeeded();
   }
 
-  Future<void> veryifyOneSignalConsent() async {
-    //! Wait for SettingsBloc to be SettingsSuccess
-    await context.read<SettingsBloc>().stream.firstWhere((state) => state is SettingsSuccess);
+  // Future<void> veryifyOneSignalConsent() async {
+  //   //! Wait for SettingsBloc to be SettingsSuccess
+  //   await context.read<SettingsBloc>().stream.firstWhere((state) => state is SettingsSuccess);
 
-    if (di.sl<Settings>().getOneSignalConsented() == true && await OneSignal.shared.userProvidedPrivacyConsent() == false) {
-      await Future.delayed(const Duration(seconds: 1)).then((value) async {
-        context.read<OneSignalPrivacyBloc>().add(
-              OneSignalPrivacyReGrant(
-                settingsBloc: context.read<SettingsBloc>(),
-              ),
-            );
+  //   if (di.sl<Settings>().getOneSignalConsented() == true && await OneSignal.shared.userProvidedPrivacyConsent() == false) {
+  //     await Future.delayed(const Duration(seconds: 1)).then((value) async {
+  //       context.read<OneSignalPrivacyBloc>().add(
+  //             OneSignalPrivacyReGrant(
+  //               settingsBloc: context.read<SettingsBloc>(),
+  //             ),
+  //           );
 
-        await Future.delayed(const Duration(seconds: 1)).then(
-          (value) async => await oneSignalServerRegistrationChange(),
-        );
+  //       await Future.delayed(const Duration(seconds: 1)).then(
+  //         (value) async => await oneSignalServerRegistrationChange(),
+  //       );
 
-        di.sl<Settings>().setRegistrationUpdateNeeded(false);
-      });
-    }
+  //       di.sl<Settings>().setRegistrationUpdateNeeded(false);
+  //     });
+  //   }
 
-    return Future.value();
-  }
+  //   return Future.value();
+  // }
 
   void initalizeFLogConfiguration() {
     FLog.applyConfigurations(

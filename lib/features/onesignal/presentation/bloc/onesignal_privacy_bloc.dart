@@ -53,7 +53,7 @@ class OneSignalPrivacyBloc extends Bloc<OneSignalPrivacyEvent, OneSignalPrivacyS
     Emitter<OneSignalPrivacyState> emit,
   ) async {
     await oneSignal.grantConsent(true);
-    await oneSignal.disablePush(false);
+    await oneSignal.optIn(true);
     event.settingsBloc.add(const SettingsUpdateOneSignalConsented(true));
 
     logging.info('OneSignal :: Data Privacy accepted');
@@ -68,7 +68,7 @@ class OneSignalPrivacyBloc extends Bloc<OneSignalPrivacyEvent, OneSignalPrivacyS
     Emitter<OneSignalPrivacyState> emit,
   ) async {
     await oneSignal.grantConsent(true);
-    await oneSignal.disablePush(false);
+    await oneSignal.optIn(true);
     event.settingsBloc.add(const SettingsUpdateOneSignalConsented(true));
 
     logging.info('OneSignal :: OneSignal consent mismatch detected, correcting');
@@ -82,8 +82,8 @@ class OneSignalPrivacyBloc extends Bloc<OneSignalPrivacyEvent, OneSignalPrivacyS
     OneSignalPrivacyRevoke event,
     Emitter<OneSignalPrivacyState> emit,
   ) async {
-    await oneSignal.disablePush(true);
-    await oneSignal.grantConsent(false);
+    await oneSignal.optIn(false);
+
     event.settingsBloc.add(const SettingsUpdateOneSignalConsented(false));
 
     logging.info('OneSignal :: Data Privacy revoked');
