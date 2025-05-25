@@ -16,10 +16,8 @@ import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.module.AppGlideModule
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.onesignal.OSMutableNotification
-import com.onesignal.OSNotification
-import com.onesignal.OSNotificationReceivedEvent
-import com.onesignal.OneSignal.OSRemoteNotificationReceivedHandler
+import com.onesignal.notifications.INotificationReceivedEvent
+import com.onesignal.notifications.INotificationServiceExtension
 import org.json.JSONException
 import org.json.JSONObject
 import java.net.URL
@@ -33,10 +31,20 @@ import android.app.*
 @GlideModule
 class AppGlideModule : AppGlideModule()
 
-class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
-    override fun remoteNotificationReceived(context: Context, notificationReceivedEvent: OSNotificationReceivedEvent) {
-        val notification: OSNotification = notificationReceivedEvent.getNotification()
-        val data: JSONObject = notification.getAdditionalData()
+class NotificationServiceExtension : INotificationServiceExtension {
+    override fun onNotificationReceived(event: INotificationReceivedEvent) {
+        val notification = event.notification
+        val context = event.context
+        val additionalData = notification.additionalData
+
+        event.preventDefault()
+
+        val data: JSONObject? = additionalData
+        if (data == null) {
+            Log.e("Tautulli Notification Info", "Additional data is null")
+            return
+        }
+
         try {
             val version = data.optInt("version", 1)
             val serverId = data.getString("server_id")
@@ -59,10 +67,8 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
             val priority: Int = jsonMessage.getInt("priority")
             var posterThumb = jsonMessage.getString("poster_thumb")
 
-            val mutableNotification: OSMutableNotification = notification.mutableCopy()
-
             if (notificationType == 0 || posterThumb.isNullOrEmpty()) {
-                mutableNotification.setExtender { builder ->
+                notification.setExtender { builder ->
                     builder.setSmallIcon(R.drawable.ic_stat_logo_flat)
                     builder.setContentTitle(subject)
                     builder.setContentText(body)
@@ -73,7 +79,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                 }
 
                 // Send notification
-                notificationReceivedEvent.complete(mutableNotification)
+                event.notification.display()
             }
             // Fetch/add image and send notification if notification type is 1 or 2 
             else {
@@ -93,7 +99,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                 // Add a delayed notification that will try to send after 22.5s
                 // This notification will only complete successfully if the GlideApp times out
                 Handler(Looper.getMainLooper()).postDelayed({
-                    mutableNotification.setExtender { builder ->
+                    notification.setExtender { builder ->
                         builder.setSmallIcon(R.drawable.ic_stat_logo_flat)
                         builder.setContentTitle(subject)
                         builder.setContentText(body)
@@ -102,7 +108,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                         builder.setPriority(priority)
                         builder
                     }
-                    notificationReceivedEvent.complete(mutableNotification)
+                    event.notification.display()
                 }, 22500)
 
                 GlideApp.with(context)
@@ -111,7 +117,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                     .timeout(22000) // OneSignal timesout and sends the original notification after 25s
                     .into(object : CustomTarget<Bitmap>() {
                         override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                            mutableNotification.setExtender { builder ->
+                            notification.setExtender { builder ->
                                 builder.setSmallIcon(R.drawable.ic_stat_logo_flat)
                                 builder.setContentTitle(subject)
                                 builder.setContentText(body)
@@ -123,7 +129,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                             }
                                 
                             if (notificationType == 2) {
-                                mutableNotification.setExtender { builder ->
+                                notification.setExtender { builder ->
                                     builder.setSmallIcon(R.drawable.ic_stat_logo_flat)
                                     builder.setContentTitle(subject)
                                     builder.setContentText(body)
@@ -139,7 +145,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
                             }
                             
                             //* Send notification with image
-                            notificationReceivedEvent.complete(mutableNotification)
+                            event.notification.display()
                         }
 
                         override fun onLoadCleared(placeholder: Drawable?) {}
@@ -150,7 +156,7 @@ class NotificationServiceExtension : OSRemoteNotificationReceivedHandler {
         }
     }
 
-    private fun createNotificationChannel(context: Context) {
+     private fun createNotificationChannel(context: Context) {
         //* Create the NotificationChannel, but only on API 26+ because
         //* the NotificationChannel class is new and not in the support library
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
