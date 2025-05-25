@@ -1,5 +1,7 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
+// ignore_for_file: constant_identifier_names
+
 abstract class  LocaleKeys {
   static const about_legalese = 'about_legalese';
   static const about_title = 'about_title';
@@ -357,6 +359,7 @@ abstract class  LocaleKeys {
   static const time_title = 'time_title';
   static const time_range_title = 'time_range_title';
   static const tips_title = 'tips_title';
+  static const total_title = 'total_title';
   static const total_play_count_for_last_12_months_title = 'total_play_count_for_last_12_months_title';
   static const total_play_time_for_last_12_months_title = 'total_play_time_for_last_12_months_title';
   static const tracks_title = 'tracks_title';

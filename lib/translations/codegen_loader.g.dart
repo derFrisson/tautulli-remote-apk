@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-// ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters
+// ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters, constant_identifier_names
 
 import 'dart:ui';
 
@@ -14,7 +14,7 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> zh = {
+  static const Map<String,dynamic> _zh = {
   "about_legalese": "遵循GNU通用公共许可协议v3.0",
   "about_title": "关于",
   "accepted_title": "接受",
@@ -312,7 +312,7 @@ class CodegenLoader extends AssetLoader{
   "play_count_by_top_10_platforms": "播放次数前十的播放平台",
   "eta_title": "预计结束时间"
 };
-static const Map<String,dynamic> sl = {
+static const Map<String,dynamic> _sl = {
   "about_legalese": "Licencirano pod GNU General Public License v3.0",
   "about_title": "O tem",
   "accepted_title": "Sprejeto",
@@ -697,7 +697,7 @@ static const Map<String,dynamic> sl = {
   "terminate_stream_dialog_title": "Ste prepričani, da želite prekiniti ta tok?",
   "unknown_title": "Neznano"
 };
-static const Map<String,dynamic> hu = {
+static const Map<String,dynamic> _hu = {
   "about_legalese": "GNU General Public License v3.0 alapján licencelt",
   "about_title": "Névjegy",
   "accepted_title": "Elfogadom",
@@ -717,7 +717,7 @@ static const Map<String,dynamic> hu = {
   "custom_time_range_title": "Egyedi időtartomány",
   "custom_title": "Egyedi",
   "days": "nap",
-  "days_title": "nap",
+  "days_title": "Nap",
   "default_title": "Alapértelmezett",
   "details_title": "Részletek",
   "device_token_edit_snackbar_message": "Az eszköz tokenek nem szerkeszthetőek",
@@ -810,7 +810,7 @@ static const Map<String,dynamic> hu = {
   "throttled_title": "Lassított",
   "time_range_title": "Időtartomány",
   "tracks_title": "Számok",
-  "transcode_title": "Átalakítás",
+  "transcode_title": "Átkódolás",
   "tv_shows_title": "TV sorozatok",
   "tv_title": "TV",
   "users_title": "Felhasználók",
@@ -833,7 +833,7 @@ static const Map<String,dynamic> hu = {
   "certificate_verification_failed_content": "A kiszolgáló tanúsítványát nem lehet hitelesíteni, és lehet önjelölni. Szeretné bízni ezt a tanúsítványt?",
   "certificate_verification_failed_title": "Tanúsítvány ellenőrzés Hibás",
   "change_language_title": "Nyelv megváltoztatása",
-  "basic_authentication_title": "alapszintű hitelesítés",
+  "basic_authentication_title": "Alapszintű hitelesítés",
   "bitrate_title": "Bitráta",
   "clear_app_image_cache_dialog_content": "Biztosan törölni szeretné a helyi kép-gyorsítótárat?",
   "clear_app_image_cache_subtitle": "Helyi gyorsítótárban lévő képek törlése",
@@ -842,14 +842,234 @@ static const Map<String,dynamic> hu = {
   "clear_tautulli_image_cache_failure_snackbar_message": "Sikertelen a {} kép gyorsítótár törlése",
   "clear_tautulli_image_cache_success_snackbar_message": "{} kép gyorsítótár törölve",
   "clear_tautulli_image_cache_subtitle": "Kiszolgálón gyorsítótárazott képek törlése",
-  "artists_title": "Művész",
+  "artists_title": "Előadó",
   "audio_title": "Hang",
   "bandwidth_title": "Sávszélesség",
   "app_logs_title": "Napló",
   "check_again_title": "Ellenőrizd újra",
-  "clear_app_image_cache_success_snackbar_message": "Kép-gyorsítótár törölve"
+  "clear_app_image_cache_success_snackbar_message": "Kép-gyorsítótár törölve",
+  "user_title": "Felhasználó",
+  "help_translate_heading_card_content": "Hozzájárulásaid segítenek javítani a Tautulli Remote-ot és elérhetővé tenni azt a közösség nagyobb része számára.",
+  "play_count_by_hour_of_the_day": "Lejátszások száma óránkénti bontásban",
+  "dynamic_theme_subtitle": "Válassz egy színt, bármilyen színt",
+  "data_dump_warning_line_1": "FIGYELMEZTETÉS: Ez az oldal érzékeny adatokat tartalmaz.",
+  "recently_watched_title": "Nemrég megtekintett",
+  "most_watched_tv_shows_title": "Legnézettebb sorozatok",
+  "most_active_users_title": "Legaktívabb felhasználók",
+  "onesignal_error_unexpected_message": "Kérjük, forduljon a Tautulli támogatáshoz segítségért.",
+  "wizard_closing_announcements": "Figyeld a Bejelentések oldalt, hogy az alkalmazással kapcsolatos fontos üzeneteket kapjon.",
+  "close_title": "Bezárás",
+  "decision_title": "Döntés",
+  "directed_by_title": "Rendezte",
+  "double_back_to_exit_toast_message": "A kilépéshez használd a vissza gombot",
+  "episode_title": "Epizód",
+  "error_message_certificate_verification": "A tanúsítvány ellenőrzése nem sikerült",
+  "error_message_connection": "Nincs hálózati kapcsolat",
+  "failure_title": "Hiba",
+  "help_translate_heading_card_title": "Köszönjük, hogy segítesz a Tautulli Remote fordításában!",
+  "ip_address_title": "IP-cím",
+  "logs_empty_filter_message": "Nincsenek naplók a kiválasztott szűrőhöz.",
+  "more_title": "Több",
+  "most_concurrent_streams_title": "Legtöbb egyidejű stream",
+  "most_popular_movies_title": "Legnépszerűbb filmek",
+  "most_popular_tv_shows_title": "Legnépszerűbb sorozatok",
+  "most_watched_movies_title": "Legnézettebb filmek",
+  "multiserver_activity_page_subtitle": "Az összes szerver aktivitásának egyidejű megjelenítése",
+  "no_data": "Nincs adat",
+  "notification_permission_dialog_content": "Az értesítések fogadásához szükséges az értesítési engedély.",
+  "play_time_title": "Játszási idő",
+  "progress_title": "Előrehaladás",
+  "privacy_policy_title": "Adatvédelmi irányelvek",
+  "published_title": "Megjelent",
+  "quality_title": "Minőség",
+  "request_a_new_language_title": "Új nyelv kérelmezése",
+  "runtime_title": "Műsoridő",
+  "search_history_title": "Keresési előzmények",
+  "seasons": "évadok",
+  "secondary_connection_address_explanation_one": "A másodlagos kapcsolati cím akkor lesz használatban, ha az elsődleges kapcsolati cím nem elérhető.",
+  "secondary_connection_address_explanation_two": "Ez különösen akkor hasznos, ha a nyilvános IP-címe nem érhető el a hálózaton belül.",
+  "server_connection_address_dialog_primary_validation": "Érvényes URL-formátumot adj meg",
+  "shows_title": "Sorozatok",
+  "settings_and_operations_title": "Beállítások & Műveletek",
+  "skip_title": "Ugrás",
+  "sort_users_title": "Felhasználók rendezése",
+  "stats_title": "Statisztika",
+  "streamed_title": "Streamelve",
+  "streams_title": "Streamek",
+  "stream_title": "Stream",
+  "time_title": "Idő",
+  "update_title": "Frissítés",
+  "unknown_title": "Ismeretlen",
+  "user_stats_empty_message": "Nem találtunk felhasználói statisztikát.",
+  "user_stats_title": "Felhasználói statisztika",
+  "video_title": "Videó",
+  "password_title": "Jelszó",
+  "view_on_plex_title": "Megtekintés Plexen",
+  "wizard_closing_support": "A problémákkal kapcsolatos segítségért vagy visszajelzésért látogasson el a Beállítások oldalon található Súgó és Támogatás linkekre.",
+  "wizard_closing_title": "Néhány záró gondolat",
+  "wizard_skip_dialog_message_onesignal": "Ha a Tautulli Remote-ot push-értesítések fogadására kívánod használni, akkor később bele kell egyezned a OneSignal adatvédelembe.",
+  "wizard_skip_dialog_message_servers": "Még nem regisztráltál egyetlen Tautulli szervert sem.",
+  "wizard_welcome_text_1": "Üdvözöllek!",
+  "written_by_title": "Írta",
+  "server_registration_bullet_four": "Győződj meg róla, hogy a Tautulli címe elérhető más eszközökről.",
+  "subtitle_title": "Felirat",
+  "stopped_title": "Leállítva",
+  "view_privacy_page_title": "Adatvédelmi oldal megtekintése",
+  "wizard_accessibility_text_2": "A Varázsló befejezése után további beállításokat kérhetsz a Beállítások > Súgó és támogatás > Hibák/Funkciókérések menüpont alatt.",
+  "home_page_title": "Főoldal",
+  "most_active_libraries_title": "Legaktívabb könyvtárak",
+  "error_message_generic": "Ismeretlen hiba",
+  "error_message_invalid_api_key": "Érvénytelen eszköz token",
+  "error_message_no_servers": "Egyetlen kiszolgáló sincs beállítva",
+  "filter_history_title": "Szűrő előzményei",
+  "genres_title": "Műfaj",
+  "later_title": "Később",
+  "onesignal_data_privacy_not_accepted_content": "A Tautulli értesítéseinek fogadásához a OneSignal adatvédelemhez való hozzájárulás szükséges.",
+  "operations_title": "Műveletek",
+  "server_delete_dialog_title": "Biztos, hogy törölni szeretnéd a '{}'-t?",
+  "settings_load_failed_message": "A beállítások betöltése sikertelen volt.",
+  "connection_details_title": "Kapcsolat részletei",
+  "container_title": "Konténer",
+  "data_dump_warning_line_2": "Legyen óvatos a megosztáskor.",
+  "date_title": "Dátum",
+  "error_message_server_version": "A szerver verziója nem felel meg a követelményeknek",
+  "error_message_terminate_stream_failed": "Nem sikerült lezárni a streamet",
+  "learn_more_title": "További információk",
+  "mask_senstivie_info_subtitle": "IP-címek és más érzékeny információk elrejtése",
+  "optimized_title": "Optimalizált",
+  "secondary_connection_title": "Másodlagos kapcsolat",
+  "select_user_title": "Felhasználó kiválasztása",
+  "error_suggestion_certificate_expired": "Kérjük, ellenőrizze a tanúsítványát, és regisztráljon újra a Tautulli szerverén.",
+  "error_suggestion_check_server_settings": "Kérjük, ellenőrizd a kapcsolat beállításokat.",
+  "language_title": "Nyelv",
+  "quit_title": "Kilépés",
+  "error_message_server": "Nem sikerült csatlakozni a szerverhez",
+  "server_registration_bullet_one": "Nyisd meg a Tautulli webes felületét egy másik eszközön.",
+  "photos_title": "Képek",
+  "delete_title": "Törlés",
+  "device_token_validation": "32 karakter hosszúnak kell lennie (jelenleg: {})",
+  "disable_image_backgrounds_title": "Képháttér kikapcsolása",
+  "discord_title": "Discord",
+  "dont_ask_again_message": "Ne kérdezd újra",
+  "double_back_to_exit_subtitle": "A kilépéshez használja kétszer a back gombot",
+  "double_back_to_exit_title": "Duplán vissza a kilépéshez",
+  "dynamic_title": "Dinamikus",
+  "enhancements_title": "Bővítések",
+  "error_message_bad_api_response": "Hibás API-válasz",
+  "error_message_certificate_expired": "Lejárt a TLS/SSL tanúsítványa",
+  "error_message_database_init": "Az adatbázis inicializálása sikertelen",
+  "discard_title": "Elvetés",
+  "dynamic_color_title": "Dinamikus színvilág",
+  "error_snackbar_message": "Valami elromlott",
+  "error_suggestion_certificate_verification": "Kérjük, regisztráljon újra a Tautulli szerverén.",
+  "hidden_message": "REJTETT",
+  "high_contrast_title": "Nagy kontrasztú",
+  "error_suggestion_server_version": "Kérjük, frissítsd a Tautulli kiszolgálót v{} vagy nagyobb verzióra",
+  "error_suggestion_terminate_stream_failed": "Ez a stream lehet, hogy már nem aktív",
+  "feature_not_yet_available_snackbar_message": "Funkció még nem elérhető",
+  "font_title": "Betűtípus",
+  "global_stats_title": "Globális statisztikák",
+  "go_to_album_title": "Ugrás az Albumhoz",
+  "go_to_artist_title": "Ugrás az Előadóhoz",
+  "go_to_season_title": "Ugrás az Évadhoz",
+  "go_to_settings_title": "Ugrás a Beállításokhoz",
+  "go_to_show_title": "Ugrás a Sorozathoz",
+  "integer_larger_than_1_message": "Kérjük, adjon meg egy 1-nél nagyobb egész számot",
+  "live_title": "Élő",
+  "location_lookup_failed_message": "Nem sikerült lekérdezni a tartózkodási helyet",
+  "location_title": "Helyszín",
+  "max_concurrent_title": "Max egyidejű",
+  "most_active_platforms_title": "Legaktívabb platformok",
+  "most_played_artists_title": "Legtöbbet játszott előadók",
+  "most_popular_artists_title": "Legnépszerűbb előadók",
+  "notification_permission_dialog_title": "Értesítési engedély letiltva",
+  "or": "vagy",
+  "optional": "opcionális",
+  "other_title": "Egyéb",
+  "paused_title": "Szüneteltetve",
+  "platform_title": "Platform",
+  "play_count_by_day_of_the_week": "Lejátszások száma a hét napjai szerinti bontásban",
+  "player_title": "Lejátszó",
+  "product_title": "Termék",
+  "reddit_title": "Reddit",
+  "save_title": "Mentés",
+  "server_connection_address_dialog_secondary_validation": "Hagyd üresen, vagy írj be egy érvényes URL-formátumot",
+  "server_registration_bullet_two": "Navigálj a Beállítások > Tautulli Remote App menüpontra.",
+  "server_registration_bullet_three": "Válaszd az 'Új eszköz regisztrálása' lehetőséget.",
+  "server_registration_title": "Szerver regisztráció",
+  "server_registration_updated_snackbar_message": "Frissített {} regisztráció",
+  "servers_title": "Szerverek",
+  "settings_load_error_message": "Ismeretlen hiba a beállításoknál.",
+  "settings_loading_message": "Beállítások betöltése folyamatban.",
+  "starring_title": "Szereplők",
+  "started_title": "Elkezdve",
+  "step_title": "Lépés",
+  "studio_title": "Stúdió",
+  "tautulli_theme_subtitle": "Ismerős kinézet",
+  "terminate_title": "Leállítás",
+  "terminate_stream_dialog_default_message": "A szerver tulajdonosa befejezte a streamet.",
+  "terminate_stream_dialog_title": "Biztos, hogy véget akarsz vetni ennek a streamnek?",
+  "terms_of_use_title": "Felhasználási feltételek",
+  "theme_title": "Megjelenés",
+  "themes_title": "Megjelenés",
+  "username_title": "Felhasználónév",
+  "users_empty_message": "Nem találtunk felhasználót.",
+  "view_onesignal_privacy_title": "A OneSignal adatvédelem megtekintése",
+  "wiki_title": "Wiki",
+  "wizard_accessibility_text_1": "A Tautulli Remote számos hozzáférhetőségi beállítást biztosít.",
+  "wizard_closing_notifications": "Ne felejtsd el a Tautulli Remote-ot értesítési ügynöknek konfigurálni a Tautulliban a Beállítások > Értesítési ügynökök menüpontban.",
+  "wizard_onesignal_text_2": "Ha szeretnél értesítéseket kapni ebben az alkalmazásban, kérjük, nézd át és fogadd el az alábbi OneSignal adatvédelmi nyilatkozatot.",
+  "wizard_theme_text_1": "Testre szabhatod a Tautulli Remote megjelenését.",
+  "wizard_theme_text_2": "Próbáld ki a dinamikus témát a kedvenc színed mellett!",
+  "wizard_quit_dialog_title": "Biztos, hogy ki akarsz lépni a Beállítás varázslóból?",
+  "wizard_welcome_text_2": "A Tautulli Remote lehetővé teszi, hogy a meglévő Tautulli- szerverhez csatlakozva megtekinthesd a Plex- szerver tevékenységét, előzményeit, statisztikáit és még sok mást.",
+  "wizard_welcome_text_3": "Győződj meg róla, hogy a Tautulli jelenleg fut és elérhető erről az eszközről, mielőtt folytatnád a telepítővarázslót.",
+  "error_suggestion_authorization_required": "A szerver a következő választ adta: Engedélyezés szükséges. Ellenőrizze a kapcsolat adatait és a fejléceket.",
+  "play_count_by_source_resolution": "Lejátszásszám forrás felbontása szerint",
+  "onesignal_data_privacy_text_block_4": "Amint elfogadod, ez az eszköz regisztrálni fog a OneSignalnál. A beleegyezés visszavonható a OneSignal-lal való további kommunikáció megakadályozása érdekében.",
+  "onesignal_error_registration_title": "Az eszköz nincs regisztrálva a OneSignal rendszerben",
+  "filter_recently_added_title": "Nemrég hozzáadott szűrő",
+  "no_title": "Nem",
+  "onesignal_data_privacy_not_accepted_title": "OneSignal Adatvédelem nincs elfogadva",
+  "onesignal_data_privacy_text_block_3": "A OneSignal API-n keresztül küldött értesítési adatok %~30 nap után törlődnek%.",
+  "onesignal_error_registration_message": "Ez az eszköz megpróbál regisztrálni a OneSignalnál. Ez a folyamat akár 2 percet is igénybe vehet.",
+  "onesignal_error_unexpected_title": "Váratlan hiba a OneSignal előfizetési állapotában",
+  "onesignal_unreachable_content": "Ebben az állapotban az értesítések nem működnek, és a Tautulli Remote nem lesz képes regisztrálni a OneSignalhoz.",
+  "tips_title": "Tippek",
+  "total_play_time_for_last_12_months_title": "Teljes lejátszási idő az elmúlt 12 hónapban",
+  "wizard_skip_dialog_title": "Biztos, hogy ki akarod hagyni?",
+  "custom_color_title": "Egyéni szín",
+  "play_time_by_source_resolution": "Lejátszási idő a forrás felbontása szerint",
+  "contact_support_title": "Lépj kapcsolatba a Támogatással",
+  "play_count_title": "Lejátszások száma",
+  "play_count_by_stream_resolution": "Lejátszások száma stream-felbontás szerint",
+  "rated_title": "Besorolás",
+  "error_suggestion_bad_api_response": "A szerver válaszából hiányzott a szükséges információ. Kérjük, lépj kapcsolatba a Támogatással.",
+  "error_suggestion_plex_connection": "Ellenőrizd a csatlakozási címet, hogy vannak-e hibák, és győződj meg arról, hogy a Tautulli képes kommunikálni a Plexszel.",
+  "error_suggestion_register_server": "Kérjük, regisztrálj egy Tautulli szervert",
+  "graphs_tips_dialog_content": "Az adatpontok közötti lapozáshoz nyomja meg hosszan a grafikon gombját. A támogatott készülékek rezgéses visszajelzést adnak.",
+  "onesignal_data_privacy_text_block_2": "A %OneSignal% a Tautulli értesítéseinek kézbesítésére szolgál. A OneSignal nem gyűjt személyes adatokat (SZAA). További részletekért olvassa el a %OneSignal adatvédelmi szabályzatát%.",
+  "onesignal_unreachable_title": "A OneSignal nem érhető el",
+  "play_count_by_platform_stream_type": "Lejátszások száma platform stream típusa szerint",
+  "play_time_by_day_of_the_week": "Lejátszási idő a hét napjai szerint",
+  "primary_connection_title": "Elsődleges kapcsolat",
+  "rate_app_title": "Élvezed a Tautulli Remote-ot?",
+  "total_play_count_for_last_12_months_title": "Összes lejátszás az elmúlt 12 hónapban",
+  "wizard_onesignal_allow_title": "Engedélyezze a OneSignal számára push értesítések küldését",
+  "daily_play_count_by_stream_type_title": "Napi lejátszási szám stream típusa szerint",
+  "play_count_by_top_10_users": "Top10 felhasználó lejátszásainak száma",
+  "daily_play_time_by_stream_type_title": "Napi lejátszási idő stream típusa szerint",
+  "library_media_full_refresh_title": "Médiatár teljes frissítése",
+  "library_media_full_refresh_snackbar_message": "A médiatár teljes frissítésének végrehajtása",
+  "play_count_by_top_10_platforms": "Top 10 platform lejátszásainak száma",
+  "daily_play_time_by_media_type_title": "Napi lejátszási idő médiatípusonként",
+  "error_suggestion_invalid_api_key": "Ellenőrizd a készüléked tokenjét, vagy próbálj új QR-kódot generálni a Tautulli oldalon.",
+  "library_media_full_refresh_subtitle": "Médiatár frissítése Tautulliban, amikor az frissül",
+  "player_stats_empty_message": "Nem találtunk lejátszási statisztikát.",
+  "clear_tautulli_image_cache_title": "Képgyorsítótár {} törlése",
+  "clear_title": "Törlés"
 };
-static const Map<String,dynamic> nl = {
+static const Map<String,dynamic> _nl = {
   "about_legalese": "Gelicenseerd onder de GNU General Public License v3.0",
   "about_title": "Over",
   "accepted_title": "Geaccepteerd",
@@ -1034,7 +1254,7 @@ static const Map<String,dynamic> nl = {
   "clear_app_image_cache_success_snackbar_message": "Afbeelding cache gewist",
   "accessibility_title": "Toegankelijkheid"
 };
-static const Map<String,dynamic> de = {
+static const Map<String,dynamic> _de = {
   "about_legalese": "Lizenziert unter der GNU General Public License v3.0",
   "about_title": "Über",
   "accepted_title": "Angenommen",
@@ -1411,12 +1631,12 @@ static const Map<String,dynamic> de = {
   "user_title": "Benutzer",
   "written_by_title": "Geschrieben von"
 };
-static const Map<String,dynamic> ru = {
-  "announcements_title": "Объявления",
+static const Map<String,dynamic> _ru = {
+  "announcements_title": "Объявление",
   "burn_title": "Вшить",
-  "converting_title": "Конвертирование",
+  "converting_title": "Конвертация",
   "custom_time_range_dialog_content": "Для большинства экранов рекомендуется не превышать 90 дней.",
-  "custom_time_range_title": "Персонализированный временной промежуток",
+  "custom_time_range_title": "Персонализированный временной диапазон",
   "custom_title": "Персонализированный",
   "days_title": "Дни",
   "direct_play_title": "Прямое воспроизведение",
@@ -1460,9 +1680,71 @@ static const Map<String,dynamic> ru = {
   "users_title": "Пользователи",
   "view_media_title": "Просмотреть носитель",
   "view_user_title": "Просмотреть пользователя",
-  "y_axis_title": "Ось ординат"
+  "y_axis_title": "Ось ординат",
+  "device_token_edit_snackbar_message": "Токены устройств нельзя редактировать",
+  "certificate_verification_failed_content": "Сертификат для этого сервера не удалось аутентифицировать, и он может быть самоподписанным. Хотите ли вы доверять этому сертификату?",
+  "date_title": "Дата",
+  "activity_empty_message": "В данный момент ничего не воспроизводится.",
+  "artists_title": "Исполнитель",
+  "app_update_available_message": "Доступно обновление для Tautulli Удаленно",
+  "audio_title": "Аудио",
+  "bandwidth_title": "Пропускная способность",
+  "basic_authentication_title": "Базовая Аунтификация",
+  "bitrate_title": "Скорость передачи",
+  "bugs_and_feature_requests_title": "Ошибка /Запроса функции",
+  "check_again_title": "Проверьте еще раз",
+  "clear_app_image_cache_dialog_content": "Вы уверены, что хотите очистить локальный кэш изображений?",
+  "clear_app_image_cache_success_snackbar_message": "Кэш изображений приложения очищен",
+  "clear_app_image_cache_subtitle": "Удаление локальных кэшированных изображений",
+  "clear_app_image_cache_title": "Очистить кэш изображений приложения",
+  "clear_tautulli_image_cache_dialog_content": "Вы уверены, что хотите очистить кэш изображений в {}?",
+  "clear_tautulli_image_cache_failure_snackbar_message": "Не удалось очистить {} кэш изображений",
+  "clear_tautulli_image_cache_success_snackbar_message": "кэш контейнера очищен",
+  "clear_tautulli_image_cache_subtitle": "Удаление изображений, кэшированных сервером",
+  "clear_tautulli_image_cache_title": "Очистить {} Кэш изображений",
+  "clear_title": "Очистить",
+  "close_title": "Закрыть",
+  "connection_details_title": "Сведения о подключении",
+  "contact_support_title": "Обратитесь в службу поддержки",
+  "container_title": "Контейнер",
+  "copied_to_clipboard_snackbar_message": "Скопировано в буфер обмена",
+  "daily_play_time_by_stream_type_title": "Ежедневное время воспроизведения в зависимости от типа потока",
+  "data_dump_title": "Дамп данных",
+  "data_dump_warning_line_1": "ВНИМАНИЕ: Эта страница содержит конфиденциальные данные.",
+  "data_dump_warning_line_2": "Будьте осторожны при обмене информацией.",
+  "default_title": "По умолчанию",
+  "about_legalese": "Лицензирован в соответствии с GNU General Public License версии 3.0",
+  "accepted_title": "Принять",
+  "about_title": "обо мне",
+  "app_logs_title": "Журнал приложения",
+  "activity_title": "Активность",
+  "add_custom_http_header_title": "Добавить пользовательский заголовок",
+  "added_title": "Добавлен",
+  "advanced_title": "Расширенный",
+  "albums_title": "Альбом",
+  "all_title": "Все",
+  "all_time_title": "За все время",
+  "all_users_title": "Все пользователи",
+  "announcements_load_failed_message": "Не удалось загрузить объявления.",
+  "accessibility_title": "Доступность",
+  "active_connection_content": "Это текущий адрес подключения, используемый Tautulli Remote.",
+  "active_connection_title": "Активное соединение",
+  "activity_refresh_rate_title": "Частота обновления активности",
+  "aired_title": "Показан",
+  "cancel_title": "Отмена",
+  "cannot_be_blank_message": "Не может быть пустым",
+  "certificate_verification_failed_title": "Не удалось выполнить проверку сертификата",
+  "change_language_title": "Изменить язык",
+  "changelog_title": "список изменений",
+  "custom_color_title": "Пользовательский цвет",
+  "days": "День",
+  "delete_title": "Удалить",
+  "details_title": "Подробно",
+  "custom_http_headers_title": "Пользовательские заголовки HTTP",
+  "daily_play_count_by_media_type_title": "Ежедневное количество воспроизведений по типу носителя",
+  "daily_concurrent_stream_count_by_stream_type_title": "Ежедневное количество одновременных потоков по типу потока"
 };
-static const Map<String,dynamic> pl = {
+static const Map<String,dynamic> _pl = {
   "about_legalese": "Licencja GNU General Public License v3.0",
   "about_title": "O",
   "accepted_title": "Zatwierdzone",
@@ -1856,7 +2138,7 @@ static const Map<String,dynamic> pl = {
   "high_contrast_title": "Wysoki kontrast",
   "home_page_title": "Strona główna"
 };
-static const Map<String,dynamic> uk = {
+static const Map<String,dynamic> _uk = {
   "about_title": "Про додаток",
   "accessibility_title": "Доступність",
   "active_connection_title": "Активне підключення",
@@ -2261,7 +2543,7 @@ static const Map<String,dynamic> uk = {
   "decision_title": "Відтворення",
   "visuals_title": "Візуально"
 };
-static const Map<String,dynamic> sk = {
+static const Map<String,dynamic> _sk = {
   "about_legalese": "Licencované podľa všeobecnej verejnej licencie GNU v3.0",
   "about_title": "O nás",
   "accepted_title": "Akceptované",
@@ -2425,7 +2707,7 @@ static const Map<String,dynamic> sk = {
   "wizard_welcome_text_3": "Pred pokračovaním v sprievodcovi nastavením skontrolujte, či je Tautulli aktuálne spustený a prístupný z tohto zariadenia.",
   "y_axis_title": "Osa Y"
 };
-static const Map<String,dynamic> en = {
+static const Map<String,dynamic> _en = {
   "about_legalese": "Licensed under the GNU General Public License v3.0",
   "about_title": "About",
   "accepted_title": "Accepted",
@@ -2782,6 +3064,7 @@ static const Map<String,dynamic> en = {
   "time_title": "Time",
   "time_range_title": "Time Range",
   "tips_title": "Tips",
+  "total_title": "Total",
   "total_play_count_for_last_12_months_title": "Total Play Count for Last 12 Months",
   "total_play_time_for_last_12_months_title": "Total Play Time for Last 12 Months",
   "tracks_title": "Tracks",
@@ -2831,7 +3114,7 @@ static const Map<String,dynamic> en = {
   "written_by_title": "Written By",
   "y_axis_title": "Y Axis"
 };
-static const Map<String,dynamic> my = {
+static const Map<String,dynamic> _my = {
   "accessibility_title": "သုံးစွဲနိုင်မှု",
   "about_title": "အကြောင်း",
   "active_connection_content": "၎င်းသည် လက်ရှိ Tautulli Remote ဖြင့် ချိတ်ဆက်ထားသော လိပ်စာဖြစ်သည်။",
@@ -2839,7 +3122,7 @@ static const Map<String,dynamic> my = {
   "about_legalese": "GNU General Public လိုင်စင် v3.0 အောက်တွင် လိုင်စင်ယူထားသည်",
   "active_connection_title": "လက်ရှိ ချိတ်ဆက်မှု့များ"
 };
-static const Map<String,dynamic> pt_PT = {
+static const Map<String,dynamic> _pt_PT = {
   "about_legalese": "Licenciado sob a GNU General Public License v3.0",
   "about_title": "Sobre",
   "accepted_title": "Aceito",
@@ -2989,9 +3272,37 @@ static const Map<String,dynamic> pt_PT = {
   "wizard_welcome_text_1": "Bem-vindo!",
   "wizard_welcome_text_2": "O Tautulli Remote permite que visualize a atividade do servidor Plex, histórico, estatísticas e muito mais, conectando-se ao servidor Tautulli existente.",
   "wizard_welcome_text_3": "Certifique-se de que o Tautulli está atualmente em execução e acessível a partir deste aparelho antes de continuar com o assistente de configuração.",
-  "y_axis_title": "Eixo Y"
+  "y_axis_title": "Eixo Y",
+  "app_update_available_message": "Uma atualização está disponível para o Tautulli Remote",
+  "cancel_title": "Cancelar",
+  "changelog_title": "Registo de alterações",
+  "check_again_title": "Verifique novamente",
+  "clear_title": "Limpar",
+  "close_title": "Fechar",
+  "custom_http_headers_title": "Cabeçalhos HTTP personalizados",
+  "date_title": "Data",
+  "data_dump_warning_line_2": "Tenha cuidado ao partilhar.",
+  "accessibility_title": "Acessibilidade",
+  "activity_empty_message": "Nada está a ser reproduzido no momento.",
+  "add_custom_http_header_title": "Adicionar cabeçalho HTTP personalizado",
+  "bandwidth_title": "Largura de banda",
+  "daily_play_count_by_media_type_title": "Contagem diária de reproduções por tipo de média",
+  "daily_play_time_by_media_type_title": "Tempo de reprodução diário por tipo de média",
+  "data_dump_warning_line_1": "AVISO: esta página inclui dados confidenciais.",
+  "default_title": "Padrão",
+  "delete_title": "Apagar",
+  "directed_by_title": "Dirigido por",
+  "discord_title": "Discord",
+  "disable_image_backgrounds_title": "Desativar fundos de imagem",
+  "custom_color_title": "Cor personalizada",
+  "daily_concurrent_stream_count_by_stream_type_title": "Contagem diária de fluxo simultâneo por tipo de fluxo",
+  "donate_restore_title": "Restaurar doações manualmente",
+  "daily_play_count_by_stream_type_title": "Contagem diária de jogos por tipo de transmissão",
+  "discard_title": "Descartar",
+  "custom_time_range_dialog_content": "É recomendado não exceder 90 dias para a maioria dos tamanhos de ecrã.",
+  "donate_restored_snackbar_message": "Doações restauradas"
 };
-static const Map<String,dynamic> it = {
+static const Map<String,dynamic> _it = {
   "about_legalese": "Concesso in licenza con GNU General Public License v3.0",
   "about_title": "Informazioni",
   "accepted_title": "Accettato",
@@ -3160,9 +3471,18 @@ static const Map<String,dynamic> it = {
   "all_users_title": "Tutti gli Utenti",
   "app_logs_title": "Log dell’App",
   "custom_color_title": "Colore Custom",
-  "custom_http_headers_title": "HTTP Headers Custom"
+  "custom_http_headers_title": "HTTP Headers Custom",
+  "burn_title": "Bruciato",
+  "check_again_title": "Ricontrollare",
+  "clear_tautulli_image_cache_success_snackbar_message": "{} cache dell'immagine cancellata",
+  "activity_empty_message": "Niente in riproduzione",
+  "announcements_load_failed_message": "Impossibile caricare gli annunci.",
+  "clear_tautulli_image_cache_subtitle": "Rimozione della immagini nella cache",
+  "clear_tautulli_image_cache_title": "Rimuovi {} image cache",
+  "clear_title": "Rimuovi",
+  "daily_play_count_by_media_type_title": "Riproduzioni giornaliere per tipologia"
 };
-static const Map<String,dynamic> sq = {
+static const Map<String,dynamic> _sq = {
   "about_legalese": "E liçensuar nga LPP Liçensa Publike e Përgjithshme V3.0",
   "about_title": "Rreth nesh",
   "accepted_title": "E pranuar",
@@ -3187,7 +3507,7 @@ static const Map<String,dynamic> sq = {
   "certificate_verification_failed_content": "Çertifikata e këtij serveri nuk mund të njihej e ka mundësi të jetë e firmosur vetë. Do t'a besosh këtë certifikatë?",
   "certificate_verification_failed_title": "Deshtoi verifikimi i certifikatës"
 };
-static const Map<String,dynamic> fr = {
+static const Map<String,dynamic> _fr = {
   "about_legalese": "Sous licence GNU General Public License v3.0",
   "about_title": "À propos",
   "accepted_title": "Accepté",
@@ -3590,7 +3910,7 @@ static const Map<String,dynamic> fr = {
   "wizard_theme_text_2": "Essayez le thème dynamique aux côtés de votre couleur préférée !",
   "theme_title": "Thème"
 };
-static const Map<String,dynamic> el = {
+static const Map<String,dynamic> _el = {
   "activity_title": "Δραστηριότητα",
   "announcements_title": "Ανακοινώσεις",
   "burn_title": "Καμένο",
@@ -3642,8 +3962,8 @@ static const Map<String,dynamic> el = {
   "view_user_title": "Προβολή χρήστη",
   "y_axis_title": "Άξονας Υ"
 };
-static const Map<String,dynamic> bg = {};
-static const Map<String,dynamic> ca = {
+static const Map<String,dynamic> _bg = {};
+static const Map<String,dynamic> _ca = {
   "about_title": "Quant a",
   "accepted_title": "Acceptat",
   "active_connection_content": "Aquesta és l'adreça de connexió actual que utilitza Tautulli Remote.",
@@ -3786,7 +4106,7 @@ static const Map<String,dynamic> ca = {
   "disable_image_backgrounds_title": "Desactiva els fons d'imatge",
   "dismiss_buttom": "DESCARTA"
 };
-static const Map<String,dynamic> pt_BR = {
+static const Map<String,dynamic> _pt_BR = {
   "about_legalese": "Licenciado sob a GNU General Public License v3.0",
   "about_title": "Sobre",
   "accepted_title": "Aceito",
@@ -3952,7 +4272,7 @@ static const Map<String,dynamic> pt_BR = {
   "check_again_title": "Verifique novamente",
   "clear_tautulli_image_cache_subtitle": "Excluir imagens em cache do servidor"
 };
-static const Map<String,dynamic> cs = {
+static const Map<String,dynamic> _cs = {
   "about_legalese": "Licencováno pod GNU General Public License v3.0",
   "about_title": "O aplikaci",
   "accepted_title": "Přijato",
@@ -4128,7 +4448,7 @@ static const Map<String,dynamic> cs = {
   "wizard_welcome_text_3": "Ujisti se, že je Tautulli spuštěné a dostupné na tomto zařízení než budeš pokračovat příručkou.",
   "y_axis_title": "Osa Y"
 };
-static const Map<String,dynamic> da = {
+static const Map<String,dynamic> _da = {
   "accepted_title": "Accepteret",
   "activity_title": "Aktivitet",
   "added_title": "Tilføjet",
@@ -4231,7 +4551,7 @@ static const Map<String,dynamic> da = {
   "y_axis_title": "Y Akse",
   "about_title": "Om"
 };
-static const Map<String,dynamic> sv = {
+static const Map<String,dynamic> _sv = {
   "about_legalese": "Licensierad enligt GNU General Public License v3.0",
   "about_title": "Om",
   "accepted_title": "Godkänd",
@@ -4491,9 +4811,43 @@ static const Map<String,dynamic> sv = {
   "go_to_settings_title": "Gå Till Inställningar",
   "go_to_season_title": "Gå Till Säsong",
   "go_to_show_title": "Gå Till Serie",
-  "daily_concurrent_stream_count_by_stream_type_title": "Dagligt antal samtida strömmar per strömtyp"
+  "daily_concurrent_stream_count_by_stream_type_title": "Dagligt antal samtida strömmar per strömtyp",
+  "library_media_full_refresh_snackbar_message": "Uppdaterar hela mediebiblioteket",
+  "multiserver_activity_page_title": "Multi-server Aktivitetssida",
+  "error_suggestion_register_server": "Var vänlig registrera en Tautulliserver",
+  "error_suggestion_plex_connection": "Undersök uppkopplingsadress och säkerställ att Tautulli kan kommunicera med Plex.",
+  "no_data": "Ingen data",
+  "high_contrast_title": "Hög Kontrast",
+  "home_page_title": "Hemsida",
+  "ip_address_title": "IP Adress",
+  "more_title": "Mer",
+  "no_title": "Nej",
+  "graphs_tips_dialog_content": "Långtryck på en graf för att växla mellan datapunkter. Stödda enheter kommer ge vibrationsfeedback",
+  "later_title": "Senare",
+  "recently_watched_title": "Nyligen Sedd",
+  "most_played_artists_title": "Mest Spelade Artister",
+  "most_popular_artists_title": "Populärast Artister",
+  "most_popular_movies_title": "Mest Populära Filmer",
+  "most_popular_tv_shows_title": "Mest Populära TV Serier",
+  "most_watched_movies_title": "Mest Sedda Filmer",
+  "multiserver_activity_page_subtitle": "Visa aktivitet från samtliga servrar samtidigt",
+  "hidden_message": "DOLD",
+  "logs_empty_filter_message": "Inga loggar i valt filter.",
+  "notification_permission_dialog_content": "Notifieringstillstånd krävs för att få notifieringar.",
+  "or": "eller",
+  "most_active_libraries_title": "Mest Aktiva Bibliotek",
+  "learn_more_title": "Veta mer",
+  "library_media_full_refresh_title": "Full uppdatering av mediebibliotek",
+  "live_title": "Live",
+  "location_title": "Plats",
+  "mask_senstivie_info_subtitle": "Döljer IP Adresser och annan känslig data",
+  "most_active_platforms_title": "Mest Aktiva Platformar",
+  "most_concurrent_streams_title": "Flest Samtidigt strömmade",
+  "most_watched_tv_shows_title": "Mest sedda TV Serier",
+  "most_active_users_title": "Mest Aktiva Användare",
+  "notification_permission_dialog_title": "Notifieringstillstånd avstängt"
 };
-static const Map<String,dynamic> es = {
+static const Map<String,dynamic> _es = {
   "activity_title": "Actividad",
   "all_title": "Todos",
   "announcements_title": "Notificaciones",
@@ -4899,7 +5253,7 @@ static const Map<String,dynamic> es = {
   "wizard_theme_text_2": "¡Pruebe el tema dinámico junto a su color favorito!",
   "wizard_welcome_text_1": "¡Bienvenido!"
 };
-static const Map<String,dynamic> nb = {
+static const Map<String,dynamic> _nb = {
   "about_legalese": "Lisensiert ved bruk av GNU General Public License v3.0",
   "about_title": "Om",
   "accepted_title": "Akseptert",
@@ -5008,5 +5362,5 @@ static const Map<String,dynamic> nb = {
   "global_stats_title": "Global statistikk",
   "y_axis_title": "Y Akse"
 };
-static const Map<String, Map<String,dynamic>> mapLocales = {"zh": zh, "sl": sl, "hu": hu, "nl": nl, "de": de, "ru": ru, "pl": pl, "uk": uk, "sk": sk, "en": en, "my": my, "pt_PT": pt_PT, "it": it, "sq": sq, "fr": fr, "el": el, "bg": bg, "ca": ca, "pt_BR": pt_BR, "cs": cs, "da": da, "sv": sv, "es": es, "nb": nb};
+static const Map<String, Map<String,dynamic>> mapLocales = {"zh": _zh, "sl": _sl, "hu": _hu, "nl": _nl, "de": _de, "ru": _ru, "pl": _pl, "uk": _uk, "sk": _sk, "en": _en, "my": _my, "pt_PT": _pt_PT, "it": _it, "sq": _sq, "fr": _fr, "el": _el, "bg": _bg, "ca": _ca, "pt_BR": _pt_BR, "cs": _cs, "da": _da, "sv": _sv, "es": _es, "nb": _nb};
 }
