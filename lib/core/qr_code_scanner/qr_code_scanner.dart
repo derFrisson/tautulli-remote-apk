@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 abstract class QrCodeScanner {
   /// Scan with the camera until a barcode is identified, then return a `Tuple2`
@@ -13,14 +13,15 @@ abstract class QrCodeScanner {
 class QrCodeScannerImpl implements QrCodeScanner {
   @override
   Future<Tuple2<String, String>?> scan(BuildContext context) async {
-    final result = await FlutterBarcodeScanner.scanBarcode(
-      '#${Theme.of(context).colorScheme.primary.value.toRadixString(16)}',
-      'CANCEL',
-      false,
-      ScanMode.QR,
+    final result = await SimpleBarcodeScanner.scanBarcode(
+      context,
+      lineColor: '#${Theme.of(context).colorScheme.primary.toARGB32().toRadixString(16)}',
+      cancelButtonText: 'CANCEL',
+      isShowFlashIcon: false,
+      scanFormat: ScanFormat.ONLY_QR_CODE,
     );
 
-    if (result == '-1') return null;
+    if (result == '-1' || result == null) return null;
 
     final List scanResults = result.split('|');
     final connectionAddress = scanResults[0].trim();
