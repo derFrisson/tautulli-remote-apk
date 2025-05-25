@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
-import 'package:cryptography/cryptography.dart';
-import 'package:cryptography_flutter/cryptography_flutter.dart';
+import 'package:cryptography_plus/cryptography_plus.dart';
+import 'package:cryptography_flutter_plus/cryptography_flutter_plus.dart';
 
 import '../../dependency_injection.dart' as di;
 import '../../features/settings/domain/usecases/settings.dart';
