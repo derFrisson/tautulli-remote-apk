@@ -173,7 +173,7 @@ class _ActivityBottomSheetState extends State<ActivityBottomSheet> {
                                       ? Positioned.fill(
                                           child: DecoratedBox(
                                             decoration: BoxDecoration(
-                                              color: Colors.black.withOpacity(0.2),
+                                              color: Colors.black.withValues(alpha: 0.2),
                                             ),
                                           ),
                                         )
@@ -181,7 +181,7 @@ class _ActivityBottomSheetState extends State<ActivityBottomSheet> {
                                           child: DecoratedBox(
                                             position: DecorationPosition.foreground,
                                             decoration: BoxDecoration(
-                                              color: Colors.black.withOpacity(0.2),
+                                              color: Colors.black.withValues(alpha: 0.2),
                                             ),
                                             child: ImageFiltered(
                                               imageFilter: ImageFilter.blur(

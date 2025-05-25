@@ -325,7 +325,7 @@ class _IndividualStatisticViewState extends State<IndividualStatisticView> {
                 background: DecoratedBox(
                   position: DecorationPosition.foreground,
                   decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.6),
+                    color: Colors.black.withValues(alpha: 0.6),
                   ),
                   child: DecoratedBox(
                     decoration: BoxDecoration(

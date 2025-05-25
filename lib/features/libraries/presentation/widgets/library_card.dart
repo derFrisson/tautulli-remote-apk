@@ -46,7 +46,7 @@ class LibraryCard extends StatelessWidget {
                   imageBuilder: (context, imageProvider) => DecoratedBox(
                     position: DecorationPosition.foreground,
                     decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.4),
+                      color: Colors.black.withValues(alpha: 0.4),
                     ),
                     child: ImageFiltered(
                       imageFilter: ImageFilter.blur(

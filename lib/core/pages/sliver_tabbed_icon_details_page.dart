@@ -77,7 +77,7 @@ class _SliverTabbedIconDetailsStatePage extends State<SliverTabbedIconDetailsPag
                                 child: DecoratedBox(
                                   position: DecorationPosition.foreground,
                                   decoration: BoxDecoration(
-                                    color: Colors.black.withOpacity(0.6),
+                                    color: Colors.black.withValues(alpha: 0.6),
                                   ),
                                   child: widget.background,
                                 ),
@@ -149,7 +149,7 @@ class _SliverTabbedIconDetailsStatePage extends State<SliverTabbedIconDetailsPag
                     overlayColor: WidgetStateProperty.resolveWith(
                       (states) {
                         if (states.contains(WidgetState.pressed)) {
-                          return Theme.of(context).colorScheme.onSurface.withOpacity(0.12);
+                          return Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.12);
                         }
                         return null;
                       },

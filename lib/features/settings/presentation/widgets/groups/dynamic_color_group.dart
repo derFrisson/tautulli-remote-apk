@@ -76,7 +76,7 @@ class DynamicColorGroup extends StatelessWidget {
                   children: [
                     FaIcon(
                       FontAwesomeIcons.solidCircle,
-                      color: themeNotDynamic || useSystemColor ? state.appSettings.themeCustomColor.withOpacity(0.7) : state.appSettings.themeCustomColor,
+                      color: themeNotDynamic || useSystemColor ? state.appSettings.themeCustomColor.withValues(alpha: 0.7) : state.appSettings.themeCustomColor,
                       size: 20,
                     ),
                   ],

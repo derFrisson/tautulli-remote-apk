@@ -724,7 +724,7 @@ class SettingsDataSourceImpl implements SettingsDataSource {
 
   @override
   Future<bool> setThemeCustomColor(Color color) {
-    return localStorage.setInt(themeCustomColor, color.value);
+    return localStorage.setInt(themeCustomColor, color.toARGB32());
   }
 
   // Theme Enhancement

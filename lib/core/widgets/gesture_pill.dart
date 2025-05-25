@@ -10,7 +10,7 @@ class GesturePill extends StatelessWidget {
       child: Container(
         height: 4,
         width: 40,
-        color: Colors.white.withOpacity(0.3),
+        color: Colors.white.withValues(alpha: 0.3),
       ),
     );
   }

@@ -96,7 +96,7 @@ class HistoryBottomSheet extends StatelessWidget {
                                     ? Positioned.fill(
                                         child: DecoratedBox(
                                           decoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.2),
+                                            color: Colors.black.withValues(alpha: 0.2),
                                           ),
                                         ),
                                       )
@@ -104,7 +104,7 @@ class HistoryBottomSheet extends StatelessWidget {
                                         child: DecoratedBox(
                                           position: DecorationPosition.foreground,
                                           decoration: BoxDecoration(
-                                            color: Colors.black.withOpacity(0.2),
+                                            color: Colors.black.withValues(alpha: 0.2),
                                           ),
                                           child: ImageFiltered(
                                             imageFilter: ImageFilter.blur(

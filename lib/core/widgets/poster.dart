@@ -139,7 +139,7 @@ class _PosterSquare extends StatelessWidget {
                       return DecoratedBox(
                         position: DecorationPosition.foreground,
                         decoration: BoxDecoration(
-                          color: Colors.black.withOpacity(0.2),
+                          color: Colors.black.withValues(alpha: 0.2),
                         ),
                         child: ImageFiltered(
                           imageFilter: ImageFilter.blur(

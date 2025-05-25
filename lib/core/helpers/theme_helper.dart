@@ -60,7 +60,7 @@ class ThemeHelper {
       bannerTheme: const MaterialBannerThemeData(
         elevation: 1,
       ),
-      cardTheme: const CardTheme().copyWith(
+      cardTheme: const CardThemeData().copyWith(
         clipBehavior: Clip.antiAlias,
         elevation: 0,
         margin: const EdgeInsets.all(0),
@@ -88,7 +88,7 @@ class ThemeHelper {
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
       ),
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         dividerColor: Colors.transparent,
       ),
       textButtonTheme: TextButtonThemeData(
@@ -126,7 +126,7 @@ class ThemeHelper {
       bannerTheme: const MaterialBannerThemeData(
         elevation: 1,
       ),
-      cardTheme: const CardTheme().copyWith(
+      cardTheme: const CardThemeData().copyWith(
         clipBehavior: Clip.antiAlias,
         elevation: 0,
         margin: const EdgeInsets.all(0),
@@ -149,7 +149,7 @@ class ThemeHelper {
       snackBarTheme: const SnackBarThemeData(
         behavior: SnackBarBehavior.floating,
       ),
-      tabBarTheme: const TabBarTheme(
+      tabBarTheme: const TabBarThemeData(
         dividerColor: Colors.transparent,
       ),
       textButtonTheme: TextButtonThemeData(

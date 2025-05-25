@@ -137,7 +137,7 @@ class _DarkenedBackground extends StatelessWidget {
           ),
         ),
         Container(
-          color: Colors.black.withOpacity(0.6),
+          color: Colors.black.withValues(alpha: 0.6),
         ),
       ],
     );
