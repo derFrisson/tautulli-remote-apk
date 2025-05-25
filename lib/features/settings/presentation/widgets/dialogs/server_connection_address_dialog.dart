@@ -46,6 +46,7 @@ class ServerConnectionAddressDialog extends StatelessWidget {
               value,
               protocols: ['http', 'https'],
               requireProtocol: true,
+              allowUnderscore: true,
             );
             if ((primary && validUrl == false) || (!primary && isNotBlank(controller.text) && validUrl == false)) {
               return primary

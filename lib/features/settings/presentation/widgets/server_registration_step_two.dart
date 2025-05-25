@@ -102,6 +102,7 @@ class ServerRegistrationStepTwoState extends State<ServerRegistrationStepTwo> {
                 value,
                 protocols: ['http', 'https'],
                 requireProtocol: true,
+                allowUnderscore: true,
               );
 
               if (!validUrl) {
@@ -150,6 +151,7 @@ class ServerRegistrationStepTwoState extends State<ServerRegistrationStepTwo> {
                 value,
                 protocols: ['http', 'https'],
                 requireProtocol: true,
+                allowUnderscore: true,
               );
 
               if (value != '' && !validUrl) {
