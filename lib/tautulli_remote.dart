@@ -1,3 +1,4 @@
+import 'package:app_version_update/app_version_update.dart';
 import 'package:dartz/dartz.dart' as dartz;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:f_logs/f_logs.dart';
@@ -190,23 +191,20 @@ class TautulliRemoteState extends State<TautulliRemote> {
     //! Wait for SettingsBloc to be SettingsSuccess
     await context.read<SettingsBloc>().stream.firstWhere((state) => state is SettingsSuccess);
 
-    //TODO: Waiting on fix to app version update package, remove the force to flase code as well
-    context.read<SettingsBloc>().add(const SettingsUpdateAppUpdateAvailable(appUpdateAvailable: false));
-
-    // await AppVersionUpdate.checkForUpdates(
-    //   appleId: '1570909086',
-    //   playStoreId: 'com.tautulli.tautulli_remote',
-    // ).then(
-    //   (data) async {
-    //     if (data.canUpdate != null) {
-    //       context.read<SettingsBloc>().add(
-    //             SettingsUpdateAppUpdateAvailable(
-    //               appUpdateAvailable: data.canUpdate!,
-    //             ),
-    //           );
-    //     }
-    //   },
-    // );
+    await AppVersionUpdate.checkForUpdates(
+      appleId: '1570909086',
+      playStoreId: 'com.tautulli.tautulli_remote',
+    ).then(
+      (data) async {
+        if (data.canUpdate != null) {
+          context.read<SettingsBloc>().add(
+                SettingsUpdateAppUpdateAvailable(
+                  appUpdateAvailable: data.canUpdate!,
+                ),
+              );
+        }
+      },
+    );
   }
 
   Future<void> checkIfRegistrationUpdateNeeded() async {
