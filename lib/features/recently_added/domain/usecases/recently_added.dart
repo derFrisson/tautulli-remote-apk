@@ -12,9 +12,8 @@ class RecentlyAdded {
     required this.repository,
   });
 
-  /// Returns a list of <RecentlyAddedModel>
-  Future<Either<Failure, Tuple2<List<RecentlyAddedModel>, bool>>>
-      getRecentlyAdded({
+  /// Returns a list of `RecentlyAddedModel`.
+  Future<Either<Failure, Tuple2<List<RecentlyAddedModel>, bool>>> getRecentlyAdded({
     required String tautulliId,
     required int count,
     int? start,

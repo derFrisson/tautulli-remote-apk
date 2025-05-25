@@ -13,7 +13,7 @@ class Libraries {
 
   Libraries({required this.repository});
 
-  /// Returns a list of <LibrariesTableModel>.
+  /// Returns a list of `LibrariesTableModel`.
   Future<Either<Failure, Tuple2<List<LibraryTableModel>, bool>>> getLibrariesTable({
     required String tautulliId,
     bool? grouping,

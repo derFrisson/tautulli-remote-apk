@@ -9,7 +9,7 @@ class History {
 
   History({required this.repository});
 
-  /// Returns a list of <HistoryModel>.
+  /// Returns a list of `HistoryModel`.
   Future<Either<Failure, Tuple2<List<HistoryModel>, bool>>> getHistory({
     required String tautulliId,
     bool? grouping,
