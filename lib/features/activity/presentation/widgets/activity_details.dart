@@ -123,12 +123,10 @@ class _Title extends StatelessWidget {
 
 class _Subtitle extends StatelessWidget {
   final ActivityModel activity;
-  final int? maxLines;
 
   const _Subtitle(
-    this.activity, {
-    this.maxLines,
-  });
+    this.activity,
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +155,7 @@ class _Subtitle extends StatelessWidget {
     return Text(
       text,
       overflow: TextOverflow.ellipsis,
-      maxLines: maxLines ?? lines,
+      maxLines: lines,
     );
   }
 }
@@ -184,10 +182,7 @@ class _ItemDetails extends StatelessWidget {
       );
     }
 
-    if (mediaType == MediaType.episode &&
-        activity.live == true &&
-        activity.mediaIndex == null &&
-        activity.originallyAvailableAt != null) {
+    if (mediaType == MediaType.episode && activity.live == true && activity.mediaIndex == null && activity.originallyAvailableAt != null) {
       return Text(
         TimeHelper.cleanDateTime(
           activity.originallyAvailableAt!,
