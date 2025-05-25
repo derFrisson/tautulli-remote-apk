@@ -1158,7 +1158,7 @@ class _MasterDetailFlowState extends State<_MasterDetailFlow> implements _PageOp
     final MaterialPageRoute<void> masterPageRoute = _masterPageRoute(context);
 
     return NavigatorPopHandler(
-      onPop: () {
+      onPopWithResult: (result) {
         _navigatorKey.currentState!.maybePop();
       },
       child: Navigator(
