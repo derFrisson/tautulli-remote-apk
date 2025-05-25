@@ -379,7 +379,9 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         multiserverActivity: settings.getMultiserverActivity(),
         oneSignalBannerDismissed: settings.getOneSignalBannerDismissed(),
         oneSignalConsented: settings.getOneSignalConsented(),
-        patch: await ShorebirdCodePush().currentPatchNumber(),
+        patch: await ShorebirdUpdater().readCurrentPatch().then((currentPatch) {
+          return currentPatch?.number;
+        }),
         recentlyAddedFilter: settings.getRecentlyAddedFilter(),
         refreshRate: settings.getRefreshRate(),
         secret: settings.getSecret(),
