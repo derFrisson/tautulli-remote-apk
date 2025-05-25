@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:gap/gap.dart';
@@ -290,10 +291,10 @@ class _DeviceDetails extends StatelessWidget {
             const _DataDumpRowHeading('System Accent'),
             const Gap(16),
             Text(
-              defaultTargetPlatform.supportsAccentColor ? SystemTheme.accentColor.accent.toString() : 'Unsupported',
-              style: TextStyle(
-                color: defaultTargetPlatform.supportsAccentColor ? SystemTheme.accentColor.accent : null,
-              ),
+              defaultTargetPlatform.supportsAccentColor ? SystemTheme.accentColor.accent.toHexString().substring(2, 8) : 'Unsupported',
+              // style: TextStyle(
+              //   color: defaultTargetPlatform.supportsAccentColor ? SystemTheme.accentColor.accent : null,
+              // ),
             ),
           ],
         ),
@@ -359,8 +360,8 @@ class _AppSettings extends StatelessWidget {
                 GestureDetector(
                   onLongPress: e.key == 'Patch'
                       ? () async {
-                          final shorebirdCodePush = ShorebirdCodePush();
-                          final isUpdateAvailable = await shorebirdCodePush.isNewPatchAvailableForDownload();
+                          final shorebirdUpdater = ShorebirdUpdater();
+                          final status = await shorebirdUpdater.checkForUpdate();
 
                           if (di.sl<DeviceInfo>().platform == 'ios' && await di.sl<DeviceInfo>().version < 10) {
                             HapticFeedback.vibrate();
@@ -368,13 +369,13 @@ class _AppSettings extends StatelessWidget {
                             HapticFeedback.heavyImpact();
                           }
 
-                          if (isUpdateAvailable) {
+                          if (status == UpdateStatus.outdated) {
                             Fluttertoast.showToast(
                               toastLength: Toast.LENGTH_LONG,
                               msg: 'Patch available, please wait...',
                             );
 
-                            await shorebirdCodePush.downloadUpdateIfAvailable();
+                            await shorebirdUpdater.update();
 
                             Fluttertoast.showToast(
                               toastLength: Toast.LENGTH_LONG,
@@ -394,14 +395,16 @@ class _AppSettings extends StatelessWidget {
                 Expanded(
                   child: Align(
                     alignment: Alignment.centerRight,
-                    child: Text(
-                      e.value,
-                      style: e.key == 'Theme Custom Color'
-                          ? TextStyle(
-                              color: settingsState.appSettings.themeCustomColor,
-                            )
-                          : null,
-                    ),
+                    child: Builder(builder: (context) {
+                      if (e.key == 'Theme Custom Color') {
+                        return Text(
+                          settingsState.appSettings.themeCustomColor.toHexString().substring(2, 8),
+                          style: TextStyle(color: settingsState.appSettings.themeCustomColor),
+                        );
+                      }
+
+                      return Text(e.value);
+                    }),
                   ),
                 ),
               ],
@@ -458,10 +461,10 @@ class _OneSignalStatus extends StatelessWidget {
                   ),
                   _DataDumpRow(
                     children: [
-                      const _DataDumpRowHeading('Push Disabled'),
+                      const _DataDumpRowHeading('Opted In'),
                       const Gap(16),
                       Text(
-                        state.isPushDisabled.toString(),
+                        state.isOptedIn.toString(),
                       ),
                     ],
                   ),
