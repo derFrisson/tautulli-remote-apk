@@ -15,6 +15,7 @@ import 'core/global_keys/global_keys.dart';
 import 'core/helpers/home_page_helper.dart';
 import 'core/helpers/notification_helper.dart';
 import 'core/helpers/theme_helper.dart';
+import 'core/package_information/package_information.dart';
 import 'core/rate_app/rate_app.dart';
 import 'core/types/theme_enhancement_type.dart';
 import 'core/types/theme_type.dart';
@@ -197,6 +198,12 @@ class TautulliRemoteState extends State<TautulliRemote> {
     ).then(
       (data) async {
         if (data.canUpdate != null) {
+          if (data.canUpdate == true) {
+            di.sl<Logging>().info(
+                  'App Update :: Update available. Local Version: ${await PackageInformationImpl().version} | Store Version: ${data.storeVersion}',
+                );
+          }
+
           context.read<SettingsBloc>().add(
                 SettingsUpdateAppUpdateAvailable(
                   appUpdateAvailable: data.canUpdate!,

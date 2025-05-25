@@ -508,7 +508,7 @@ class _AppDrawerState extends State<_AppDrawer> {
                           child: FaIcon(
                             FontAwesomeIcons.solidCircle,
                             size: 12,
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.primary,
                           ),
                         );
                       }
