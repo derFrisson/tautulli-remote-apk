@@ -35,17 +35,20 @@ class LoggingExportBloc extends Bloc<LoggingExportEvent, LoggingExportState> {
           final box = event.context.findRenderObject() as RenderBox?;
           final Rect position;
           if (box!.size.width > 442.0) {
-            position = Rect.fromLTRB(
-                0, box.size.height - 1, box.size.width, box.size.height);
+            position = Rect.fromLTRB(0, box.size.height - 1, box.size.width, box.size.height);
           } else {
             position = box.localToGlobal(Offset.zero) & box.size;
           }
 
-          return await Share.shareXFiles(
-            [XFile(file.path)],
-            subject: 'Tautulli Remote Logs',
-            sharePositionOrigin: position,
-          ).then((shareResult) {
+          return await SharePlus.instance
+              .share(
+            ShareParams(
+              files: [XFile(file.path)],
+              subject: 'Tautulli Remote Logs',
+              sharePositionOrigin: position,
+            ),
+          )
+              .then((shareResult) {
             switch (shareResult.status) {
               case ShareResultStatus.success:
                 logging.info('Logging :: Exporting logs successful');
