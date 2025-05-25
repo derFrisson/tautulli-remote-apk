@@ -1,7 +1,7 @@
 import CryptoSwift
 import CommonCrypto
 import Foundation
-import OneSignal
+import OneSignalFramework
 import os.log
 import SQLite3
 import UIKit
