@@ -151,7 +151,7 @@ class _DonateViewState extends State<DonateView> {
             child: _offerings == null
                 ? Center(
                     child: CircularProgressIndicator(
-                      color: Theme.of(context).colorScheme.onBackground,
+                      color: Theme.of(context).colorScheme.onSurface,
                     ),
                   )
                 : _offerings!.all.isNotEmpty
