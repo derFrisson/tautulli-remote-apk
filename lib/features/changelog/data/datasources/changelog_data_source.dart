@@ -6,11 +6,11 @@ Map changelog = {
       "changes": [
         {
           "type": "important",
-          "detail": "Donations have been re-enabled, any support you can provide is appriciated!",
+          "detail": "Donations have been re-enabled, any support you can provide is appreciated!",
         },
         {
           "type": "improvement",
-          "detail": "Underscores no longer cause connaction address to fail URL validation",
+          "detail": "Underscores no longer cause connection address to fail URL validation",
         },
         {
           "type": "improvement",
