@@ -1,6 +1,30 @@
 Map changelog = {
   "data": [
     {
+      "version": "v3.4.1",
+      "date": "June 19, 2025",
+      "changes": [
+        {
+          "type": "important",
+          "detail":
+              "Plex appears to have changed how deep linking into their app works with the new version. Until the new method is discovered the \"View On Plex\" functionality has been removed.",
+        },
+        {
+          "type": "improvement",
+          "detail": "New translations for Hungarian",
+          "additional": "Thanks @ugyes",
+        },
+        {
+          "type": "fix",
+          "detail": "Prevent situations where the bottom sheet could render behind the navigation bar on Android",
+        },
+        {
+          "type": "fix",
+          "detail": "Account for when Location is null",
+        },
+      ],
+    },
+    {
       "version": "v3.4.0",
       "date": "June 8, 2025",
       "changes": [
