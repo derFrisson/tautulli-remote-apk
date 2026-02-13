@@ -1,0 +1,158 @@
+name: Auto Sync and Build
+
+on:
+  schedule:
+    # Run daily at 02:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  sync-and-build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream and sync
+        run: |
+          git remote add upstream https://github.com/Tautulli/Tautulli-Remote.git || true
+          git fetch upstream
+
+          # Check if there are changes to merge
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "Already up to date with upstream"
+            echo "SYNC_DONE=false" >> $GITHUB_ENV
+          else
+            git merge upstream/main -m "Sync with upstream Tautulli-Remote" || {
+              echo "Merge conflict detected. Manual intervention required."
+              exit 1
+            }
+            git push origin main
+            echo "SYNC_DONE=true" >> $GITHUB_ENV
+            echo "✅ Synced with upstream"
+          fi
+
+      - name: Get current version from pubspec.yaml
+        id: current_version
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | cut -d' ' -f2 | cut -d'+' -f1)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Current version in pubspec.yaml: $VERSION"
+
+      - name: Get latest release version
+        id: latest_release
+        run: |
+          LATEST=$(gh release list --limit 1 --json tagName --jq '.[0].tagName' 2>/dev/null || echo "none")
+          if [ "$LATEST" = "none" ] || [ -z "$LATEST" ]; then
+            echo "version=none" >> $GITHUB_OUTPUT
+            echo "No existing releases found"
+          else
+            # Remove 'v' prefix for comparison
+            LATEST_VERSION=${LATEST#v}
+            echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
+            echo "Latest release version: $LATEST_VERSION"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Check if build needed
+        id: check_build
+        run: |
+          CURRENT="${{ steps.current_version.outputs.version }}"
+          LATEST="${{ steps.latest_release.outputs.version }}"
+
+          if [ "$LATEST" = "none" ]; then
+            echo "should_build=true" >> $GITHUB_OUTPUT
+            echo "✅ No release exists, will build v$CURRENT"
+          elif [ "$CURRENT" != "$LATEST" ]; then
+            echo "should_build=true" >> $GITHUB_OUTPUT
+            echo "✅ Version changed: v$LATEST -> v$CURRENT, will build"
+          else
+            echo "should_build=false" >> $GITHUB_OUTPUT
+            echo "❌ Version unchanged (v$CURRENT), skipping build"
+          fi
+
+      - name: Set up Java JDK 17
+        if: steps.check_build.outputs.should_build == 'true'
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Flutter
+        if: steps.check_build.outputs.should_build == 'true'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        if: steps.check_build.outputs.should_build == 'true'
+        run: flutter pub get
+
+      - name: Build APK
+        if: steps.check_build.outputs.should_build == 'true'
+        run: flutter build apk --release
+
+      - name: Rename APK with version
+        if: steps.check_build.outputs.should_build == 'true'
+        run: |
+          VERSION="${{ steps.current_version.outputs.version }}"
+          mv build/app/outputs/flutter-apk/app-release.apk \
+             build/app/outputs/flutter-apk/tautulli-remote-${VERSION}.apk
+
+      - name: Create Release
+        if: steps.check_build.outputs.should_build == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.current_version.outputs.version }}
+          name: Tautulli Remote v${{ steps.current_version.outputs.version }}
+          draft: false
+          prerelease: false
+          make_latest: true
+          generate_release_notes: false
+          body: |
+            ## Tautulli Remote v${{ steps.current_version.outputs.version }}
+
+            Automated build from upstream [Tautulli-Remote](https://github.com/Tautulli/Tautulli-Remote) repository.
+
+            ### 📦 Download
+            Download the APK below and install on your Android device.
+
+            ### 📱 Installation
+            1. Download the APK file
+            2. Enable "Install from Unknown Sources" in Android settings
+            3. Open the APK and install
+
+            ### 🔄 Using with Obtanium
+            Add this repository to Obtanium to automatically receive updates:
+            - **URL:** `https://github.com/${{ github.repository }}`
+            - **Source:** GitHub Releases
+
+            ---
+            *Synced from upstream on ${{ github.event.repository.updated_at }}*
+          files: |
+            build/app/outputs/flutter-apk/tautulli-remote-${{ steps.current_version.outputs.version }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        run: |
+          echo "## Workflow Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_build.outputs.should_build }}" = "true" ]; then
+            echo "✅ **Built and released version v${{ steps.current_version.outputs.version }}**" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "ℹ️ No build needed - version unchanged" >> $GITHUB_STEP_SUMMARY
+          fi
