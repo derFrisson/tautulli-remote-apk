@@ -56,7 +56,8 @@ jobs:
           CURRENT_VERSION="${{ steps.current_version.outputs.version }}"
 
           # Check if a release with this version tag already exists
-          if gh release view "v${CURRENT_VERSION}" >/dev/null 2>&1; then
+          echo "Checking for release v${CURRENT_VERSION} in repo ${{ github.repository }}"
+          if gh release view "v${CURRENT_VERSION}" --repo "${{ github.repository }}" >/dev/null 2>&1; then
             echo "exists=true" >> $GITHUB_OUTPUT
             echo "✅ Release v${CURRENT_VERSION} already exists"
           else
