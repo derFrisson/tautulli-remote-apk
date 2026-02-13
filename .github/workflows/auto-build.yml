@@ -119,9 +119,12 @@ jobs:
         if: steps.check_build.outputs.should_build == 'true'
         run: |
           flutter build apk --release \
-            --no-tree-shake-icons \
-            --dart-define=FLUTTER_WEB_AUTO_DETECT=true \
-            --verbose
+            --no-tree-shake-icons 2>&1 | tee build.log || {
+            echo "====== BUILD FAILED ======"
+            echo "Last 100 lines of build output:"
+            tail -100 build.log
+            exit 1
+          }
 
       - name: Rename APK with version
         if: steps.check_build.outputs.should_build == 'true'
