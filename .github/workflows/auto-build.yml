@@ -97,13 +97,31 @@ jobs:
           channel: 'stable'
           cache: true
 
-      - name: Install dependencies
+      - name: Clean Flutter build
         if: steps.check_build.outputs.should_build == 'true'
-        run: flutter pub get
+        run: flutter clean
+
+      - name: Get dependencies
+        if: steps.check_build.outputs.should_build == 'true'
+        run: |
+          flutter pub get
+          flutter pub upgrade
+
+      - name: Configure Gradle memory
+        if: steps.check_build.outputs.should_build == 'true'
+        run: |
+          mkdir -p ~/.gradle
+          echo "org.gradle.jvmargs=-Xmx4096m -XX:MaxMetaspaceSize=1024m -XX:+HeapDumpOnOutOfMemoryError" >> ~/.gradle/gradle.properties
+          echo "org.gradle.daemon=false" >> ~/.gradle/gradle.properties
+          echo "org.gradle.parallel=true" >> ~/.gradle/gradle.properties
 
       - name: Build APK
         if: steps.check_build.outputs.should_build == 'true'
-        run: flutter build apk --release
+        run: |
+          flutter build apk --release \
+            --no-tree-shake-icons \
+            --dart-define=FLUTTER_WEB_AUTO_DETECT=true \
+            --verbose
 
       - name: Rename APK with version
         if: steps.check_build.outputs.should_build == 'true'
