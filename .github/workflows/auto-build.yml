@@ -103,9 +103,7 @@ jobs:
 
       - name: Get dependencies
         if: steps.check_build.outputs.should_build == 'true'
-        run: |
-          flutter pub get
-          flutter pub upgrade
+        run: flutter pub get
 
       - name: Configure Gradle memory
         if: steps.check_build.outputs.should_build == 'true'
