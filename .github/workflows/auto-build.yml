@@ -94,7 +94,7 @@ jobs:
         if: steps.check_build.outputs.should_build == 'true'
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.1'
+          channel: 'stable'
           cache: true
 
       - name: Clean Flutter build
