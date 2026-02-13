@@ -50,18 +50,18 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "Current version in pubspec.yaml: $VERSION"
 
-      - name: Get latest release version
-        id: latest_release
+      - name: Check if release exists for current version
+        id: check_release
         run: |
-          LATEST=$(gh release list --limit 1 --json tagName --jq '.[0].tagName' 2>/dev/null || echo "none")
-          if [ "$LATEST" = "none" ] || [ -z "$LATEST" ]; then
-            echo "version=none" >> $GITHUB_OUTPUT
-            echo "No existing releases found"
+          CURRENT_VERSION="${{ steps.current_version.outputs.version }}"
+
+          # Check if a release with this version tag already exists
+          if gh release view "v${CURRENT_VERSION}" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+            echo "✅ Release v${CURRENT_VERSION} already exists"
           else
-            # Remove 'v' prefix for comparison
-            LATEST_VERSION=${LATEST#v}
-            echo "version=$LATEST_VERSION" >> $GITHUB_OUTPUT
-            echo "Latest release version: $LATEST_VERSION"
+            echo "exists=false" >> $GITHUB_OUTPUT
+            echo "❌ Release v${CURRENT_VERSION} does not exist yet"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -69,18 +69,15 @@ jobs:
       - name: Check if build needed
         id: check_build
         run: |
+          RELEASE_EXISTS="${{ steps.check_release.outputs.exists }}"
           CURRENT="${{ steps.current_version.outputs.version }}"
-          LATEST="${{ steps.latest_release.outputs.version }}"
 
-          if [ "$LATEST" = "none" ]; then
+          if [ "$RELEASE_EXISTS" = "false" ]; then
             echo "should_build=true" >> $GITHUB_OUTPUT
-            echo "✅ No release exists, will build v$CURRENT"
-          elif [ "$CURRENT" != "$LATEST" ]; then
-            echo "should_build=true" >> $GITHUB_OUTPUT
-            echo "✅ Version changed: v$LATEST -> v$CURRENT, will build"
+            echo "✅ Will build v$CURRENT (release does not exist)"
           else
             echo "should_build=false" >> $GITHUB_OUTPUT
-            echo "❌ Version unchanged (v$CURRENT), skipping build"
+            echo "❌ Skipping build (v$CURRENT already released)"
           fi
 
       - name: Set up Java JDK 17
