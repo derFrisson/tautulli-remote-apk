@@ -7,36 +7,46 @@ on:
   workflow_dispatch:  # Allow manual triggering
 
 jobs:
-  # Check if commit message matches version pattern
+  # Check if commit message matches version pattern OR if manually triggered
   check-version:
     runs-on: ubuntu-latest
     outputs:
-      is_version: ${{ steps.check.outputs.is_version }}
+      should_build: ${{ steps.check.outputs.should_build }}
       version: ${{ steps.check.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Check if version commit
+      - name: Check if version commit or extract from pubspec.yaml
         id: check
         run: |
-          COMMIT_MSG=$(git log -1 --pretty=%B)
-          echo "Commit message: $COMMIT_MSG"
-
-          # Check if commit message matches version pattern (v1.2.3)
-          if echo "$COMMIT_MSG" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
-            echo "is_version=true" >> $GITHUB_OUTPUT
-            VERSION=$(echo "$COMMIT_MSG" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+')
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "✅ Version commit detected: $VERSION"
+          # Check if manually triggered
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "🔧 Manual trigger detected, extracting version from pubspec.yaml"
+            VERSION=$(grep '^version:' pubspec.yaml | cut -d' ' -f2 | cut -d'+' -f1)
+            echo "should_build=true" >> $GITHUB_OUTPUT
+            echo "version=v$VERSION" >> $GITHUB_OUTPUT
+            echo "✅ Building version v$VERSION from pubspec.yaml"
           else
-            echo "is_version=false" >> $GITHUB_OUTPUT
-            echo "❌ Not a version commit"
+            # Auto-triggered by push, check commit message
+            COMMIT_MSG=$(git log -1 --pretty=%B)
+            echo "Commit message: $COMMIT_MSG"
+
+            # Check if commit message matches version pattern (v1.2.3)
+            if echo "$COMMIT_MSG" | grep -qE '^v[0-9]+\.[0-9]+\.[0-9]+$'; then
+              echo "should_build=true" >> $GITHUB_OUTPUT
+              VERSION=$(echo "$COMMIT_MSG" | grep -oE 'v[0-9]+\.[0-9]+\.[0-9]+')
+              echo "version=$VERSION" >> $GITHUB_OUTPUT
+              echo "✅ Version commit detected: $VERSION"
+            else
+              echo "should_build=false" >> $GITHUB_OUTPUT
+              echo "❌ Not a version commit, skipping build"
+            fi
           fi
 
   build:
     needs: check-version
-    if: needs.check-version.outputs.is_version == 'true'
+    if: needs.check-version.outputs.should_build == 'true'
     runs-on: ubuntu-latest
 
     steps:
